@@ -1,4 +1,3 @@
-
 let inventario = {
     productos: []
   };
@@ -14,6 +13,7 @@ let inventario = {
     });
   }
 
+  
   function totalInventario() {
     let total = 0;
     inventario.productos.forEach(producto => {

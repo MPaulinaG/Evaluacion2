@@ -1,29 +1,35 @@
-let inventario = {
-    productos: []
-  };
- 
-  function agregarProducto(nombre, precio, cantidad) {
-    inventario.productos.push({ nombre, precio, cantidad });
-  }
+const escuela = {
+    estudiantes: []
+};
 
-  function listarProductos() {
-    alert("Productos en el inventario");
-    inventario.productos.forEach(producto => {
-      alert(`Nombre: ${producto.nombre}, Precio: ${producto.precio}, Cantidad: ${producto.cantidad}`);
+function agregarEstudiante(nombre, calificaciones) {
+    const estudiante = {
+        nombre: nombre,
+        calificaciones: calificaciones
+    };
+    escuela.estudiantes.push(estudiante);
+}
+
+function listarEstudiantes() {
+    alert("Lista de estudiantes:");
+    escuela.estudiantes.forEach(estudiante => {
+        alert(`Nombre: ${estudiante.nombre}, Calificaciones: ${estudiante.calificaciones.join(", ")}`);
     });
-  }
+}
 
-  
-  function totalInventario() {
-    let total = 0;
-    inventario.productos.forEach(producto => {
-      total += producto.precio * producto.cantidad;
-    });
-    
-  }
+function promedioEstudiante(nombre) {
+    const estudiante = escuela.estudiantes.find(estudiante => estudiante.nombre === nombre);
+    if (!estudiante) {
+        return "Estudiante no encontrado";
+    }
+    const sumatoria = estudiante.calificaciones.reduce((total, calificacion) => total + calificacion, 0);
+    return sumatoria / estudiante.calificaciones.length;
+}
+agregarEstudiante("Juan", [85, 90, 95]);
+agregarEstudiante("María", [75, 80, 85]);
+agregarEstudiante("Carlos", [90, 95, 100]);
 
-  agregarProducto("Producto 1", 10, 5);
-  agregarProducto("Producto 2", 20, 3);
-  listarProductos();
-  alert("Valor total del inventario:", totalInventario());
-  
+listarEstudiantes();
+
+alert("Promedio de Juan:", promedioEstudiante("Juan"));
+
